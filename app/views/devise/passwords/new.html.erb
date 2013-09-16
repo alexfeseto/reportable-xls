@@ -1,0 +1,15 @@
+<div class="row" id="sign_in">
+  <div class="thumbnail offset3 span6">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <h3>Forgot your password?</h3>
+      <%= devise_error_messages! %>
+      <div>
+        <%= f.email_field :email, :class => "input-block-level", :placeholder => "Email Address", :autofocus => true %>
+      </div>
+
+      <div><%= f.submit "Send me reset password instructions", :class => "btn btn-primary" %></div>
+      <br/><br/>
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </div>
+</div>
