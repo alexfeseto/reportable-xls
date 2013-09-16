@@ -10,7 +10,10 @@ gem "devise"
 gem "cancan"
 gem "rails_admin"
 gem "sidekiq"
+gem 'sidekiq-failures'
+gem 'sinatra', :require => nil
 gem "carrierwave"
+gem "carrierwave_backgrounder"
 
 gem "bootstrap-sass"
 gem "font-awesome-rails"
@@ -23,6 +26,7 @@ gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
 
+gem 'rjb'
 gem 'puma'
 
 group :development do

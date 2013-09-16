@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 ReportableXls::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -14,6 +16,15 @@ ReportableXls::Application.routes.draw do
   get "home/index"
   get 'about' => "home#about"
   get 'contact' => "home#contact"
+  
+  admin_constraint = lambda do |request|
+    request.env['warden'].authenticate? and request.env['warden'].user.admin?
+  end
+
+  constraints admin_constraint do
+    mount Sidekiq::Web => '/admin/sidekiq'
+    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
