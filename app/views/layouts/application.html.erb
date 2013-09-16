@@ -21,6 +21,11 @@
               <% end -%>
               <li><a href="/about">About</a></li>
               <li><a href="/contact">Contact</a></li>
+              <%- if user_signed_in? %>
+                <li class="pull_right">
+                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                </li>
+              <% end -%>
             </ul>
           </div>
         </div>

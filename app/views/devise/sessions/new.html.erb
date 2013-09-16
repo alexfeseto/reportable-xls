@@ -1,7 +1,7 @@
 <div class="row" id="sign_in">
   <div class="thumbnail offset4 span4">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <h2>Please sign in</h2>
+      <h2>Please Login</h2>
       <div>
         <%= f.email_field :email, :class => "input-block-level", :placeholder => "Email Address", :autofocus => true %>
       </div>
@@ -17,7 +17,7 @@
       <% end -%>
 
       <div>
-        <%= f.submit "Sign in", :class => "btn btn-large btn-primary" %>
+        <%= f.submit "Login", :class => "btn btn-large btn-primary" %>
       </div>
       <br/><br/>
       <%= render "devise/shared/links" %>
