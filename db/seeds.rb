@@ -8,4 +8,6 @@
 
 u = User.new(name: 'nilakanta@gmail.com', email: 'nilakanta@gmail.com', admin: true)
 u.password = u.password_confirmation = 'nilakanta'
+u = User.new(name: 'alex@reportablesystems.com', email: 'alex@reportablesystems.com', admin: true)
+u.password = u.password_confirmation = 'alexander'
 u.save!
