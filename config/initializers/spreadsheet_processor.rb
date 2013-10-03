@@ -17,7 +17,11 @@ module SpreadsheetProcessor
     # Rails.logger.info "***** processing ***** #{self.model} >>>"
     xml_content = excel_xml_builder.generateXml(self.current_path)
     # Rails.logger.info "xml_content = #{xml_content}"
-    self.model.update_attributes(:xml_content => xml_content)
+    if xml_content == 'Error'
+      return false
+    else
+      self.model.update_attributes(:xml_content => xml_content)
+    end
     # Rails.logger.info self.model.xml_content
   end
 end
