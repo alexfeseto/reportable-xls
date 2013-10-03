@@ -1,0 +1,16 @@
+@import "bootstrap";
+
+#sign_in {
+  margin-top: 40px;
+}
+#new_user {
+  padding: 20px;
+}
+#all-documents {
+  .table th {
+    text-align: center;
+  }
+  .table td.download-link {
+    text-align: center;
+  }
+}

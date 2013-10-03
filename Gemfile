@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '4.0.0'
 gem 'mysql2'
@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
+gem "kaminari"
+gem "simple_form"
 
 gem 'jbuilder', '~> 1.2'
 

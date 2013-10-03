@@ -1,0 +1,28 @@
+<div id="all-documents">
+  <h1>Documents</h1>
+
+  <%= link_to raw('<i class="icon-plus"></i> Add document'), new_document_path, class: 'btn btn-link' %>
+
+  <table class="table table-hover table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th width="77%">Name</th>
+        <th width="10%">Download</th>
+        <th width="10%">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td><%= document.name %></td>
+          <td class="download-link"><%= link_to raw('<i class="icon-download"></i>'), document_path(document, format: :xml), title: 'Download Xml', class: 'btn btn-link', target: '_blank' %></td>
+          <td>
+            <%= link_to raw('<i class="icon-pencil"></i>'), edit_document_path(document), title: 'Edit', class: 'btn btn-link' %>
+            <%= link_to raw('<i class="icon-remove"></i>'), document, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete', class: 'btn btn-link' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

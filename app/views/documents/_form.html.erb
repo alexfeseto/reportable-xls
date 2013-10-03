@@ -1,0 +1,7 @@
+<%= simple_form_for @document, html: {class: ''}  do |f| %>
+  <%= f.input :name %>
+  <br>
+  <%= f.input :file, as: :file %>
+  <br>
+  <%= f.button :submit, class: 'btn-success' %>
+<% end %>

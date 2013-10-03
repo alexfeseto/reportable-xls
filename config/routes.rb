@@ -2,18 +2,23 @@ require 'sidekiq/web'
 
 ReportableXls::Application.routes.draw do
 
+  resources :documents do
+    member do
+      get 'download'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   authenticated :user do
-    root :to => 'home#index', :as => :authenticated_root
+    root :to => 'documents#index', :as => :authenticated_root
   end
   root :to => redirect('/users/sign_in')
   
   devise_for :users
 
-  get "home/index"
   get 'about' => "home#about"
   get 'contact' => "home#contact"
   

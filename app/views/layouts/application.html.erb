@@ -14,13 +14,17 @@
         <div class="navbar-inner">
           <div class="container">
             <ul class="nav" id="topnav">
-              <li><a href="/">Home</a></li>
+              <%- if user_signed_in? %>
+                <li><a href="/documents">Documents</a></li>
+              <% else %>
+                <li><a href="/">Home</a></li>
+              <% end -%>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
               <%- if current_user.try(:admin?) %>
                 <li><a href="/admin">Admin</a></li>
                 <li><a href="/admin/sidekiq">Sidekiq</a></li>
               <% end -%>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
               <%- if user_signed_in? %>
                 <li class="pull_right">
                   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
