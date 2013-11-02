@@ -4,19 +4,13 @@ class Document < ActiveRecord::Base
   paginates_per 20
 
   belongs_to :user
-
-  mount_uploader :file, DocumentUploader
-
-  validates :name, :presence => true
-  validates :file, :presence => true,
-    :file_size => {
-      :maximum => 10.megabytes.to_i
-    }
-
-  # process_in_background :file
+  has_many :versions, dependent: :destroy, class_name: "DocumentVersion"
+  belongs_to :latest_version, foreign_key: 'latest_version_id', class_name: "DocumentVersion"
 
   scope :top_by_user, lambda {|user_id|
-    select("id, name").where({user_id: user_id}).order("updated_at DESC")
+    select("documents.id, document_versions.name name, document_versions.id version_id")
+    .joins(:latest_version)
+    .where({user_id: user_id})
+    .order("documents.updated_at DESC")
   }
-
 end

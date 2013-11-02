@@ -11,16 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916082742) do
+ActiveRecord::Schema.define(version: 20131102042603) do
 
-  create_table "documents", force: true do |t|
+  create_table "document_versions", force: true do |t|
     t.string   "name"
     t.text     "xml_content"
     t.string   "file"
     t.boolean  "file_processing", default: false
+    t.integer  "document_id"
+    t.datetime "created_at"
+  end
+
+  add_index "document_versions", ["file_processing"], name: "index_document_versions_on_file_processing", using: :btree
+  add_index "document_versions", ["name"], name: "index_document_versions_on_name", using: :btree
+
+  create_table "documents", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "latest_version_id"
   end
 
   create_table "rails_admin_histories", force: true do |t|

@@ -24,8 +24,8 @@ module SpreadsheetProcessor
       else
         self.model.update_attributes(:xml_content => xml_content)
       end
-    rescue exception
-      Rails.logger.error exception
+    rescue Exception => e
+      Rails.logger.error(e)
       self.model.errors.add(:base, "Processing the document failed")
       return false
     end

@@ -1,7 +1,10 @@
-<%= simple_form_for @document, html: {class: ''}  do |f| %>
+<%= simple_form_for @document_version, url: url_for(@document), method: (@document.new_record? ? 'POST' : 'PUT'), html: {class: ''}  do |f| -%>
+  <% if f.error(:base) -%>
+    <p class="alert alert-error"><%= f.error(:base) %></p>
+  <% end %>
   <%= f.input :name %>
   <br>
   <%= f.input :file, as: :file %>
   <br>
   <%= f.button :submit, class: 'btn-success' %>
-<% end %>
+<% end -%>

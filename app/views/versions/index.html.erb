@@ -1,0 +1,11 @@
+<table class="table table-hover table-condensed table-bordered">
+  <% @versions.each do |version| -%>
+    <tr>
+      <td><%= version.name %></td>
+      <td class="download-link">
+        <%= link_to raw('<i class="icon-download"></i> '), document_version_path(@document, version, format: :xml), title: 'Download this version Xml', class: 'btn btn-link', target: '_blank' %>
+      </td>
+      <td>Uploaded <%= time_ago_in_words(version.created_at) %> ago</td>
+    </tr>
+  <% end -%>
+</table>

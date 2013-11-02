@@ -3,7 +3,7 @@
 
   <%= link_to raw('<i class="icon-plus"></i> Add document'), new_document_path, class: 'btn btn-link' %>
 
-  <table class="table table-hover table-bordered table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th width="77%">Name</th>
@@ -15,11 +15,17 @@
     <tbody>
       <% @documents.each do |document| %>
         <tr>
-          <td><%= document.name %></td>
-          <td class="download-link"><%= link_to raw('<i class="icon-download"></i>'), document_path(document, format: :xml), title: 'Download Xml', class: 'btn btn-link', target: '_blank' %></td>
+          <td>
+            <p><%= document.name %></p>
+            <div class="version-link">
+              <a data-href="<%= document_versions_url(document.id, format: :html) %>">All Versions <i class='icon-chevron-sign-down'></i></a>
+            </div>
+            <div class="all-versions"></div>
+          </td>
+          <td class="download-link"><%= link_to raw('<i class="icon-download"></i>'), document_url(document, format: :xml), title: 'Download Xml', class: 'btn btn-link', target: '_blank' %></td>
           <td>
             <%= link_to raw('<i class="icon-pencil"></i>'), edit_document_path(document), title: 'Edit', class: 'btn btn-link' %>
-            <%= link_to raw('<i class="icon-remove"></i>'), document, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete', class: 'btn btn-link' %>
+            <%= link_to raw('<i class="icon-remove"></i>'), document, method: :delete, data: { confirm: 'Are you sure, this will delete all the existing versions?' }, title: 'Delete', class: 'btn btn-link' %>
           </td>
         </tr>
       <% end %>
